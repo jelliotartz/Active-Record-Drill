@@ -1,3 +1,3 @@
 <% @questions.each do |question| %>
-  <p><a href="/questions/<%= question.id %>"><%= question.text %></a></p>
+  <p><a href="/questions/<%= question.id %>"><%= question.text %></a> <% if @completed.include?(question.id) %><img src="/done.png"><% end %></p>
 <% end %>
