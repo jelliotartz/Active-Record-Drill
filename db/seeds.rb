@@ -74,4 +74,10 @@ Question.create!(text: "What is the relationship between a user and an order?")
 Question.create!(text: "What is the relationship between an order account and a user?")
 .answers << Answer.create!(text: "belongs_to :user")
 
+# AddressBook
+Question.create!(text: "What is the relationship between a group and a contanct?")
+.answers << Answer.create!(text: "has_many :contacts")
+
+Question.create!(text: "What is the relationship between a contact and a group?")
+.answers << Answer.create!(text: "has_many :groups")
 
