@@ -5,10 +5,11 @@
 
 # Theater_Screens_Screenings
 Question.create!(text: "What is the relationship between a theater and a screen?").answers << Answer.create!(text: "has_many :screens")
-Question.create!(text: "What is the relationship between a theater and a screening?").answers << Answer.create!(text: "has_many :screens")
+Question.create!(text: "What is the relationship between a theater and a screening?").answers << Answer.create!(text: "has_many :screenings, through: :screens")
 Question.create!(text: "What is the relationship between a screen and a theater?").answers << Answer.create!(text: "belongs_to :theater")
 Question.create!(text: "What is the relationship between a screen and a screening?").answers << Answer.create!(text: "has_many :screenings")
 Question.create!(text: "What is the relationship between a screening and a screen?").answers << Answer.create!(text: "belongs_to :screen")
+Question.create!(text: "What is the relationship between a screening and a theater?").answers << Answer.create!(text: "belongs_to :theater, through: :screen")
 
 
 ##### Questions and Answers for T-Shirt Challenge
