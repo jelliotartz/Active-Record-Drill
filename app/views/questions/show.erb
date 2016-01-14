@@ -4,7 +4,10 @@
 <p>Incorrect!</p>
 <% end %>
 
-<p><%= @question.text %></p>
+<p id="question-text"><%= @question.text %></p>
+
+<p><a id="hint-link" href="/questions/<%= @question.id %>/_hints">Click here for a hint!</a></p>
+
 
 <form action="/questions/<%= @question.id %>/guess" method="post">
   <input type="text" name="answer" <% if @last_guess %>value="<%= @last_guess[2] %>"<% end %>>
