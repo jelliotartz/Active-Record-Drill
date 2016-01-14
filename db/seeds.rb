@@ -68,6 +68,7 @@ Question.create!(text: "What is the relationship between a Facebook account and 
 .answers << Answer.create!(text: "belongs_to :user")
 
 # Users_Orders
+
 Question.create!(text: "What is the relationship between a user and an order?")
 .answers << Answer.create!(text: "has_many :orders")
 
@@ -75,9 +76,42 @@ Question.create!(text: "What is the relationship between an order account and a 
 .answers << Answer.create!(text: "belongs_to :user")
 
 # AddressBook
+
 Question.create!(text: "What is the relationship between a group and a contanct?")
 .answers << Answer.create!(text: "has_many :contacts")
 
 Question.create!(text: "What is the relationship between a contact and a group?")
 .answers << Answer.create!(text: "has_many :groups")
+
+# Authors_Books_Publishers
+
+Question.create!(text: "What is the relationship between an author and a book?")
+.answers << Answer.create!(text: "has_many :books")
+
+Question.create!(text: "What is the relationship between a book and an author?")
+.answers << Answer.create!(text: "has_many :authors")
+
+Question.create!(text: "What is the relationship between a book and a publisher?")
+.answers << Answer.create!(text: "belongs_to :publisher")
+
+Question.create!(text: "What is the relationship between a publisher and a book?")
+.answers << Answer.create!(text: "has_many :books")
+
+Question.create!(text: "What is the relationship between an author and a publisher?")
+.answers << Answer.create!(text: "has_many :publishers, through: :books")
+
+Question.create!(text: "What is the relationship between a publisher and an author?")
+.answers << Answer.create!(text: "has_many :authors, through: :books")
+
+
+
+
+
+
+
+
+
+
+
+
 
