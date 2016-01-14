@@ -1,0 +1,12 @@
+<% if @correct %>
+<p>That's correct!</p>
+<% elsif !@correct.nil? %>
+<p>Incorrect!</p>
+<% end %>
+
+<p><%= @question.text %></p>
+
+<form action="/questions/<%= @question.id %>" method="post">
+  <input type="text" name="answer" <% if @answer %>value="<%= @answer %>"<% end %>>
+  <input type="submit">
+</form>
