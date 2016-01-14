@@ -1,3 +1,3 @@
 <% @questions.each do |question| %>
-  <p><%= question.text %></p>
+  <p><a href="/questions/<%= question.id %>"><%= question.text %></a></p>
 <% end %>

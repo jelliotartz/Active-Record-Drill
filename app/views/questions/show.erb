@@ -1,0 +1,12 @@
+<% if @last_guess and @last_guess[1] == true %>
+<p>That's correct!</p>
+<% elsif @last_guess %>
+<p>Incorrect!</p>
+<% end %>
+
+<p><%= @question.text %></p>
+
+<form action="/questions/<%= @question.id %>/guess" method="post">
+  <input type="text" name="answer" <% if @last_guess %>value="<%= @last_guess[2] %>"<% end %>>
+  <input type="submit">
+</form>
