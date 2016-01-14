@@ -59,5 +59,15 @@ Question.create!(text: "What is the relationship between Shirt and
 sales?").answers << Answer.create!(text: "has_many :sales, class_name:
 'Purchase'")
 
+# Users_FacebookAccounts
+
+Question.create!(text: "What is the relationship between a user and a Facebook account?")
+.answers << Answer.create!(text: "has_one :Facebook_account")
+
+Question.create!(text: "What is the relationship between a Facebook account and a user?")
+.answers << Answer.create!(text: "belongs_to :user")
+
+
+
 
 
