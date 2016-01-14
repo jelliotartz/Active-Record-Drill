@@ -1,6 +1,7 @@
+# require 'faker'
+
 # Model for creating a question and associated answer
 # Question.create(text: "").answers << Answer.create(text: "")
-
 
 # Theater_Screens_Screenings
 Question.create!(text: "What is the relationship between a theater and a screen?").answers << Answer.create!(text: "has_many :screens")
@@ -9,7 +10,6 @@ Question.create!(text: "What is the relationship between a screen and a theater?
 Question.create!(text: "What is the relationship between a screen and a screening?").answers << Answer.create!(text: "has_many :screenings")
 Question.create!(text: "What is the relationship between a screening and a screen?").answers << Answer.create!(text: "belongs_to :screen")
 
-# require 'faker'
 
 ##### Questions and Answers for T-Shirt Challenge
 
@@ -111,6 +111,53 @@ Question.create!(text: "What is the relationship between a publisher and an auth
 
 
 
+
+
+
+##### Questions and Answers for Hotels Challenge
+
+Question.create!(text: "What is the relationship between Booking and
+guests?").answers << Answer.create!(text: "belongs_to :guest, class_name:
+'User'")
+
+Question.create!(text: "What is the relationship between Booking and
+rooms?").answers << Answer.create!(text: "belongs_to :rooms")
+
+Question.create!(text: "What is the relationship between Booking and
+hotels?").answers << Answer.create!(text: "has_one :hotel, through: :room")
+
+Question.create!(text: "What is the relationship between Hotel and
+rooms?").answers << Answer.create!(text: "has_many :rooms")
+
+Question.create!(text: "What is the relationship between Hotel and
+bookings?").answers << Answer.create!(text: "has_many :bookings, through:
+:rooms")
+
+Question.create!(text: "What is the relationship between Hotel and
+booked_guests?").answers << Answer.create!(text: "has_many :booked_guests,
+through: :bookings, source: :guest")
+
+Question.create!(text: "What is the relationship between Hotel and
+booked_guests?").answers << Answer.create!(text: "has_many :booked_guests,
+through: :bookings, source: :guest")
+
+Question.create!(text: "What is the relationship between Room and
+hotel?").answers << Answer.create!(text: "belongs_to :hotel")
+
+Question.create!(text: "What is the relationship between Room and
+bookings?").answers << Answer.create!(text: "has_many :bookings")
+
+Question.create!(text: "What is the relationship between User and
+bookings?").answers << Answer.create!(text: "has_many :bookings, foreign_key:
+:guest_id")
+
+Question.create!(text: "What is the relationship between User and
+booked_rooms?").answers << Answer.create!(text: "has_many :booked_rooms,
+through: :bookings, source: :room")
+
+Question.create!(text: "What is the relationship between User and
+booked_hotels?").answers << Answer.create!(text: "has_many :booked_hotels,
+through: :bookings, source: :hotel")
 
 
 
