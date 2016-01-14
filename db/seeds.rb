@@ -67,7 +67,11 @@ Question.create!(text: "What is the relationship between a user and a Facebook a
 Question.create!(text: "What is the relationship between a Facebook account and a user?")
 .answers << Answer.create!(text: "belongs_to :user")
 
+# Users_Orders
+Question.create!(text: "What is the relationship between a user and an order?")
+.answers << Answer.create!(text: "has_many :orders")
 
-
+Question.create!(text: "What is the relationship between an order account and a user?")
+.answers << Answer.create!(text: "belongs_to :user")
 
 
