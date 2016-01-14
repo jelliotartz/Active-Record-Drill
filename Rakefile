@@ -138,6 +138,10 @@ task "console" do
   exec "irb -r./config/environment"
 end
 
+desc 'You only live once'
+task 'yolo' => ['db:drop', 'db:create', 'db:migrate', 'db:seed'] do
+  exec "bundle exec shotgun config.ru"
+end
 
 # In a production environment like Heroku, RSpec might not
 # be available.  To handle this, rescue the LoadError.
