@@ -4,161 +4,146 @@
 # Question.create(text: "").answers << Answer.create(text: "")
 
 # Theater_Screens_Screenings
-Question.create!(text: "What is the relationship between a theater and a screen?").answers << Answer.create!(text: "has_many :screens")
-Question.create!(text: "What is the relationship between a theater and a screening?").answers << Answer.create!(text: "has_many :screens")
-Question.create!(text: "What is the relationship between a screen and a theater?").answers << Answer.create!(text: "belongs_to :theater")
-Question.create!(text: "What is the relationship between a screen and a screening?").answers << Answer.create!(text: "has_many :screenings")
-Question.create!(text: "What is the relationship between a screening and a screen?").answers << Answer.create!(text: "belongs_to :screen")
+Question.create!(text: "What is the relationship between a theater and a screen?", schema_img_filename: "theaters-screens-screenings-schema.png").answers << Answer.create!(text: "has_many :screens")
+Question.create!(text: "What is the relationship between a theater and a screening?", schema_img_filename: "theaters-screens-screenings-schema.png").answers << Answer.create!(text: "has_many :screenings, through: :screens")
+Question.create!(text: "What is the relationship between a screen and a theater?", schema_img_filename: "theaters-screens-screenings-schema.png").answers << Answer.create!(text: "belongs_to :theater")
+Question.create!(text: "What is the relationship between a screen and a screening?", schema_img_filename: "theaters-screens-screenings-schema.png").answers << Answer.create!(text: "has_many :screenings")
+Question.create!(text: "What is the relationship between a screening and a screen?", schema_img_filename: "theaters-screens-screenings-schema.png").answers << Answer.create!(text: "belongs_to :screen")
+Question.create!(text: "What is the relationship between a screening and a theater?", schema_img_filename: "theaters-screens-screenings-schema.png").answers << Answer.create!(text: "belongs_to :theater, through: :screen")
 
 
 ##### Questions and Answers for T-Shirt Challenge
 
 Question.create!(text: "What is the relationship between Users and
-purchases?").answers << Answer.create!(text: "has_many :purchases,
+purchases?", schema_img_filename: "shirts-schema.png").answers << Answer.create!(text: "has_many :purchases,
 foreign_key: :purchaser_id")
 
 Question.create!(text: "What is the relationship between Users and
-purchased_shirts?").answers << Answer.create!(text: "has_many
+purchased_shirts?", schema_img_filename: "shirts-schema.png").answers << Answer.create!(text: "has_many
 :purchased_shirts, through: purchases, :source => :shirt")
 
 Question.create!(text: "What is the relationship between Users and
-designed_shirts?").answers << Answer.create!(text: "has_many :designed_shirts,
+designed_shirts?", schema_img_filename: "shirts-schema.png").answers << Answer.create!(text: "has_many :designed_shirts,
 class_name: 'Shirt', foreign_key: :designer_id")
 
 Question.create!(text: "What is the relationship between Users and
-sales?").answers << Answer.create!(text: "has_many :sales, through:
+sales?", schema_img_filename: "shirts-schema.png").answers << Answer.create!(text: "has_many :sales, through:
 :designed_shirts")
 
 Question.create!(text: "What is the relationship between Users and
-clients?").answers << Answer.create!(text: "has_many :clients, through:
+clients?", schema_img_filename: "shirts-schema.png").answers << Answer.create!(text: "has_many :clients, through:
 :sales, :source => :designer")
 
 Question.create!(text: "What is the relationship between Users and
-supported_designers?").answers << Answer.create!(text: "has_many
+supported_designers?", schema_img_filename: "shirts-schema.png").answers << Answer.create!(text: "has_many
 :supported_designers, through: :purchased_shirts, :source => :designer")
 
 Question.create!(text: "What is the relationship between Purchases and
-shirts?").answers << Answer.create!(text: "belongs_to :shirt")
+shirts?", schema_img_filename: "shirts-schema.png").answers << Answer.create!(text: "belongs_to :shirt")
 
 Question.create!(text: "What is the relationship between Purchases and
-purchaser?").answers << Answer.create!(text: "belongs_to :purchaser,
+purchaser?", schema_img_filename: "shirts-schema.png").answers << Answer.create!(text: "belongs_to :purchaser,
 class_name: 'User'")
 
 Question.create!(text: "What is the relationship between Shirt and
-purchases?").answers << Answer.create!(text: "has_many :purchases")
+purchases?", schema_img_filename: "shirts-schema.png").answers << Answer.create!(text: "has_many :purchases")
 
 Question.create!(text: "What is the relationship between Shirt and
-purchaser?").answers << Answer.create!(text: "has_many :purchasers, through:
+purchaser?", schema_img_filename: "shirts-schema.png").answers << Answer.create!(text: "has_many :purchasers, through:
 :purchases")
 
 Question.create!(text: "What is the relationship between Shirt and
-designer?").answers << Answer.create!(text: "belongs_to :designer, class_name:
+designer?", schema_img_filename: "shirts-schema.png").answers << Answer.create!(text: "belongs_to :designer, class_name:
 'User'")
 
 Question.create!(text: "What is the relationship between Shirt and
-sales?").answers << Answer.create!(text: "has_many :sales, class_name:
+sales?", schema_img_filename: "shirts-schema.png").answers << Answer.create!(text: "has_many :sales, class_name:
 'Purchase'")
 
 # Users_FacebookAccounts
 
-Question.create!(text: "What is the relationship between a user and a Facebook account?")
+Question.create!(text: "What is the relationship between a user and a Facebook account?", schema_img_filename: "users-facebook-accounts-schema.png")
 .answers << Answer.create!(text: "has_one :Facebook_account")
 
-Question.create!(text: "What is the relationship between a Facebook account and a user?")
+Question.create!(text: "What is the relationship between a Facebook account and a user?", schema_img_filename: "users-facebook-accounts-schema.png")
 .answers << Answer.create!(text: "belongs_to :user")
 
 # Users_Orders
 
-Question.create!(text: "What is the relationship between a user and an order?")
+Question.create!(text: "What is the relationship between a user and an order?", schema_img_filename: "users-orders-schema.png")
 .answers << Answer.create!(text: "has_many :orders")
 
-Question.create!(text: "What is the relationship between an order account and a user?")
+Question.create!(text: "What is the relationship between an order account and a user?", schema_img_filename: "users-orders-schema.png")
 .answers << Answer.create!(text: "belongs_to :user")
 
 # AddressBook
 
-Question.create!(text: "What is the relationship between a group and a contanct?")
+Question.create!(text: "What is the relationship between a group and a contanct?", schema_img_filename: "users-orders-schema.png")
 .answers << Answer.create!(text: "has_many :contacts")
 
-Question.create!(text: "What is the relationship between a contact and a group?")
+Question.create!(text: "What is the relationship between a contact and a group?", schema_img_filename: "users-orders-schema.png")
 .answers << Answer.create!(text: "has_many :groups")
 
 # Authors_Books_Publishers
 
-Question.create!(text: "What is the relationship between an author and a book?")
+Question.create!(text: "What is the relationship between an author and a book?", schema_img_filename: "authors-books-publishers-schema.png")
 .answers << Answer.create!(text: "has_many :books")
 
-Question.create!(text: "What is the relationship between a book and an author?")
+Question.create!(text: "What is the relationship between a book and an author?", schema_img_filename: "authors-books-publishers-schema.png")
 .answers << Answer.create!(text: "has_many :authors")
 
-Question.create!(text: "What is the relationship between a book and a publisher?")
+Question.create!(text: "What is the relationship between a book and a publisher?", schema_img_filename: "authors-books-publishers-schema.png")
 .answers << Answer.create!(text: "belongs_to :publisher")
 
-Question.create!(text: "What is the relationship between a publisher and a book?")
+Question.create!(text: "What is the relationship between a publisher and a book?", schema_img_filename: "authors-books-publishers-schema.png")
 .answers << Answer.create!(text: "has_many :books")
 
-Question.create!(text: "What is the relationship between an author and a publisher?")
+Question.create!(text: "What is the relationship between an author and a publisher?", schema_img_filename: "authors-books-publishers-schema.png")
 .answers << Answer.create!(text: "has_many :publishers, through: :books")
 
-Question.create!(text: "What is the relationship between a publisher and an author?")
+Question.create!(text: "What is the relationship between a publisher and an author?", schema_img_filename: "authors-books-publishers-schema.png")
 .answers << Answer.create!(text: "has_many :authors, through: :books")
-
-
-
-
-
-
-
-
-
-
-
 
 ##### Questions and Answers for Hotels Challenge
 
 Question.create!(text: "What is the relationship between Booking and
-guests?").answers << Answer.create!(text: "belongs_to :guest, class_name:
+guests?", schema_img_filename: "hotels-schema.png").answers << Answer.create!(text: "belongs_to :guest, class_name:
 'User'")
 
 Question.create!(text: "What is the relationship between Booking and
-rooms?").answers << Answer.create!(text: "belongs_to :rooms")
+rooms?", schema_img_filename: "hotels-schema.png").answers << Answer.create!(text: "belongs_to :rooms")
 
 Question.create!(text: "What is the relationship between Booking and
-hotels?").answers << Answer.create!(text: "has_one :hotel, through: :room")
+hotels?", schema_img_filename: "hotels-schema.png").answers << Answer.create!(text: "has_one :hotel, through: :room")
 
 Question.create!(text: "What is the relationship between Hotel and
-rooms?").answers << Answer.create!(text: "has_many :rooms")
+rooms?", schema_img_filename: "hotels-schema.png").answers << Answer.create!(text: "has_many :rooms")
 
 Question.create!(text: "What is the relationship between Hotel and
-bookings?").answers << Answer.create!(text: "has_many :bookings, through:
+bookings?", schema_img_filename: "hotels-schema.png").answers << Answer.create!(text: "has_many :bookings, through:
 :rooms")
 
 Question.create!(text: "What is the relationship between Hotel and
-booked_guests?").answers << Answer.create!(text: "has_many :booked_guests,
+booked_guests?", schema_img_filename: "hotels-schema.png").answers << Answer.create!(text: "has_many :booked_guests,
 through: :bookings, source: :guest")
 
 Question.create!(text: "What is the relationship between Hotel and
-booked_guests?").answers << Answer.create!(text: "has_many :booked_guests,
+booked_guests?", schema_img_filename: "hotels-schema.png").answers << Answer.create!(text: "has_many :booked_guests,
 through: :bookings, source: :guest")
 
 Question.create!(text: "What is the relationship between Room and
-hotel?").answers << Answer.create!(text: "belongs_to :hotel")
+hotel?", schema_img_filename: "hotels-schema.png").answers << Answer.create!(text: "belongs_to :hotel")
 
 Question.create!(text: "What is the relationship between Room and
-bookings?").answers << Answer.create!(text: "has_many :bookings")
+bookings?", schema_img_filename: "hotels-schema.png").answers << Answer.create!(text: "has_many :bookings")
 
 Question.create!(text: "What is the relationship between User and
-bookings?").answers << Answer.create!(text: "has_many :bookings, foreign_key:
+bookings?", schema_img_filename: "hotels-schema.png").answers << Answer.create!(text: "has_many :bookings, foreign_key:
 :guest_id")
 
 Question.create!(text: "What is the relationship between User and
-booked_rooms?").answers << Answer.create!(text: "has_many :booked_rooms,
+booked_rooms?", schema_img_filename: "hotels-schema.png").answers << Answer.create!(text: "has_many :booked_rooms,
 through: :bookings, source: :room")
 
 Question.create!(text: "What is the relationship between User and
-booked_hotels?").answers << Answer.create!(text: "has_many :booked_hotels,
-through: :bookings, source: :hotel")
-
-
-
-
+booked_hotels?", schema_img_filename: "hotels-schema.png").answers << Answer.create!(text: "has_many :booked_hotels, through: :bookings, source: :hotel")
