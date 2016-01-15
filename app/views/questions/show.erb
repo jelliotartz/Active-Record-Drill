@@ -1,4 +1,4 @@
-<img src="../imgs/<%= @question.schema_img_filename %>" alt="Schema for Theaters, Screens, and Screenings">
+<img class="schema-img" src="../imgs/<%= @question.schema_img_filename %>" alt="Schema for Theaters, Screens, and Screenings">
 
 
 <% if @last_guess and @last_guess[1] == true %>
@@ -7,7 +7,14 @@
 <p>Incorrect!</p>
 <% end %>
 
-<p><%= @question.text %></p>
+<p id="question-text"><%= @question.text %></p>
+
+<p><a id="hint-link" href="/questions/<%= @question.id %>/hints">Click here for a hint!</a></p>
+
+<div id="question<%=@question.id%>">
+	<p id="hint-text" class="hidden">Hint: <%= @question.hint %></p>			
+</div>
+
 
 <div id="editor">class Theater < ActiveRecord::Base
 
