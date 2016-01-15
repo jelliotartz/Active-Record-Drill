@@ -1,9 +1,9 @@
 <img class="schema-img" src="../imgs/<%= @question.schema_img_filename %>" alt="Schema for Theaters, Screens, and Screenings">
 
 <% if @last_guess and @last_guess[1] == true %>
-<p>That's correct!</p>
+<p style='color: white; background: green;'>That's correct!</p>
 <% elsif @last_guess %>
-<p>Incorrect!</p>
+<p style='color: white; background: red;'>Incorrect!</p>
 <% end %>
 
 <p id="question-text"><%= @question.text %></p>

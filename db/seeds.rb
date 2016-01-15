@@ -5,24 +5,52 @@
 
 
 def start_text_for(class_name, associations = nil)
-  return "class #{class_name} < ActiveRecord::Base\r\n  #{associations}\r\nend"
+  return "class #{class_name} < ActiveRecord::Base\n  #{associations}\nend"
 end
 
 # Theater_Screens_Screenings
-Question.create!(text: "What is the relationship between a theater and a screen?", schema_img_filename: "theaters-screens-screenings-schema.png", hint: "if it's not has_one, it might be has...", start_text: start_text_for("Theater")).answers << Answer.create!(text: start_text_for("Theater", "has_many :screens"))
+Question.create!(text: "What is the relationship between a theater and a screen?",
+                 schema_img_filename: "theaters-screens-screenings-schema.png",
+                 hint: "if it's not has_one, it might be has...",
+                 start_text: start_text_for("Theater"))
+                 .answers.create!(text: start_text_for("Theater", "has_many :screens"))
 
-Question.create!(text: "What is the relationship between a theater and a screening?", schema_img_filename: "theaters-screens-screenings-schema.png", hint: "has_many: :through is a thing", start_text: start_text_for("Theater", "has_many :screens\n")).answers << Answer.create!(text: start_text_for("Theater", "has_many :screens\r\n  has_many :screenings, through: :screens"))
+Question.create!(text: "What is the relationship between a theater and a screening?",
+                 schema_img_filename: "theaters-screens-screenings-schema.png",
+                 hint: "has_many: :through is a thing",
+                 start_text: start_text_for("Theater", "has_many :screens\n  "))
+                 .answers.create!(text: start_text_for("Theater", "has_many :screens\n  has_many :screenings, through: :screens"))
 
-Question.create!(text: "What is the relationship between a screen and a theater?", schema_img_filename: "theaters-screens-screenings-schema.png", hint: "It's belongs_to, ya rube").answers << Answer.create!(text: "belongs_to :theater")
+Question.create!(text: "What is the relationship between a screen and a theater?",
+                 schema_img_filename: "theaters-screens-screenings-schema.png",
+                 hint: "It's belongs_to, ya rube",
+                 start_text: start_text_for("Screen"))
+                 .answers.create!(text: start_text_for("Screen", "belongs_to :theater"))
 
-Question.create!(text: "What is the relationship between a screen and a screening?", schema_img_filename: "theaters-screens-screenings-schema.png", hint: "if it's not has_one, it might be has_...").answers << Answer.create!(text: "has_many :screenings")
+Question.create!(text: "What is the relationship between a screen and a screening?",
+                 schema_img_filename: "theaters-screens-screenings-schema.png",
+                 hint: "if it's not has_one, it might be has_...",
+                 start_text: start_text_for("Screen", "belongs_to :theater\n  "))
+                 .answers.create!(text: start_text_for("screen", "belongs_to :theater\n  has_many :screenings"))
 
-Question.create!(text: "What is the relationship between a screening and a screen?", schema_img_filename: "theaters-screens-screenings-schema.png", hint: "It's belongs_to, ya rube").answers << Answer.create!(text: "belongs_to :screen")
+Question.create!(text: "What is the relationship between a screening and a screen?",
+                 schema_img_filename: "theaters-screens-screenings-schema.png",
+                 hint: "It's belongs_to, ya rube",
+                 start_text: start_text_for("Screening"))
+                 .answers.create!(text: start_text_for("Screening", "belongs_to :screen"))
 
-Question.create!(text: "What is the relationship between a screening and a theater?", schema_img_filename: "theaters-screens-screenings-schema.png", hint: "It's belongs_to, ya rube").answers << Answer.create!(text: "belongs_to :theater, through: :screen")
-
+Question.create!(text: "What is the relationship between a screening and a theater?",
+                 schema_img_filename: "theaters-screens-screenings-schema.png",
+                 hint: "It's belongs_to, ya rube",
+                 start_text: start_text_for("Screening", "belongs_to :screen\n  "))
+                 .answers.create!(text: start_text_for("Screening", "belongs_to :screen\n  belongs_to :theater, through: :screen"))
 
 ##### Questions and Answers for T-Shirt Challenge
+
+Question.create!(text: "What is the relationship between a Purchase and a Shirt?",
+                schema_img_filename: "shirts-schema.png",
+                start_text: start_text_for("Purchase"))
+                .answers.create!(text: start_text_for("Purchase", "belongs_to :shirt"))
 
 # Question.create!(text: "What is the relationship between Users and
 # purchases?", schema_img_filename: "shirts-schema.png").answers << Answer.create!(text: "has_many :purchases,
