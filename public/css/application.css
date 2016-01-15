@@ -15,3 +15,9 @@ nav .brand-logo {
 .hidden {
 	display: none;
 }
+
+p img {
+  display: inline-block;
+  vertical-align: middle;
+  height:20px;
+}
