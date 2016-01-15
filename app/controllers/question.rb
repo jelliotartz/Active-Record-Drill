@@ -1,5 +1,9 @@
 get '/questions' do
   @questions = Question.all
+  if session[:guesses]
+    correct = session[:guesses].select { |guess| guess[1] }
+    @completed = correct.map { |guess| guess[0] }.uniq
+  end
   erb :index
 end
 
