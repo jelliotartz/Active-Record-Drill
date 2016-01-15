@@ -6,3 +6,8 @@ nav .brand-logo {
 .button-collapse {
   color: #444;
 }
+
+#editor {
+  width:500px;
+  height:500px;
+}
