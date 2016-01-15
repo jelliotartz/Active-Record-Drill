@@ -1,3 +1,5 @@
+<p>You've completed <%= @completed.length %> out of <%= @questions.length %> questions.</p>
+<div class="progress"><div class="determinate" style="width: <%= (@completed.length / (@questions.length.to_f)) * 100 %>%"></div></div>
 <% @questions.each do |question| %>
-  <p><a href="/questions/<%= question.id %>"><%= question.text %></a></p>
+  <p><a href="/questions/<%= question.id %>"><%= question.text %></a> <% if @completed.include?(question.id) %><img src="/done.png"><% end %></p>
 <% end %>

@@ -6,3 +6,9 @@ nav .brand-logo {
 .button-collapse {
   color: #444;
 }
+
+p img {
+  display: inline-block;
+  vertical-align: middle;
+  height:20px;
+}
