@@ -6,3 +6,7 @@ nav .brand-logo {
 .button-collapse {
   color: #444;
 }
+
+.hidden {
+	display: none;
+}

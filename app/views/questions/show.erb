@@ -9,7 +9,11 @@
 
 <p id="question-text"><%= @question.text %></p>
 
-<p><a id="hint-link" href="/questions/<%= @question.id %>/_hints">Click here for a hint!</a></p>
+<p><a id="hint-link" href="/questions/<%= @question.id %>/hints">Click here for a hint!</a></p>
+
+<div id="question<%=@question.id%>">
+	<p id="hint-text" class="hidden">Hint: <%= @question.hint %></p>			
+</div>
 
 
 <form action="/questions/<%= @question.id %>/guess" method="post">

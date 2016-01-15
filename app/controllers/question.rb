@@ -9,7 +9,6 @@ get '/questions/:id' do
     @last_guess = session[:guesses].select { |guess| guess[0] == @question.id }.last
   end
   erb :'questions/show'
-    
 end
 
 post '/questions/:id/guess' do
