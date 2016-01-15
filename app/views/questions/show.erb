@@ -12,11 +12,30 @@
 <p><a id="hint-link" href="/questions/<%= @question.id %>/hints">Click here for a hint!</a></p>
 
 <div id="question<%=@question.id%>">
-	<p id="hint-text" class="hidden">Hint: <%= @question.hint %></p>			
+	<p id="hint-text" class="hidden">Hint: <%= @question.hint %></p>
 </div>
 
 
+<div id="editor">class Theater < ActiveRecord::Base
+
+end</div>
+<br>
+
 <form action="/questions/<%= @question.id %>/guess" method="post">
-  <input type="text" name="answer" <% if @last_guess %>value="<%= @last_guess[2] %>"<% end %>>
+  <textarea name="answer"><% if @last_guess %><%= @last_guess[2] %><% end %></textarea>
   <input type="submit">
 </form>
+
+<script src="/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+  var editor = ace.edit("editor");
+  editor.setTheme("ace/theme/monokai");
+  editor.getSession().setMode("ace/mode/ruby");
+  editor.getSession().setTabSize(2);
+  editor.$blockScrolling = Infinity
+  var textarea = $('textarea[name="answer"]').hide();
+  editor.getSession().setValue(textarea.val());
+  editor.getSession().on('change', function(){
+    textarea.val(editor.getSession().getValue());
+  });
+</script>
