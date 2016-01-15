@@ -3,10 +3,15 @@
 # Model for creating a question and associated answer
 # Question.create(text: "").answers << Answer.create(text: "")
 
-# Theater_Screens_Screenings
-Question.create!(text: "What is the relationship between a theater and a screen?", schema_img_filename: "theaters-screens-screenings-schema.png", hint: "if it's not has_one, it might be has...").answers << Answer.create!(text: "has_many :screens")
 
-Question.create!(text: "What is the relationship between a theater and a screening?", schema_img_filename: "theaters-screens-screenings-schema.png", hint: "has_many: :through is a thing").answers << Answer.create!(text: "has_many :screenings, through: :screens")
+def start_text_for(class_name, associations = nil)
+  return "class #{class_name} < ActiveRecord::Base\r\n  #{associations}\r\nend"
+end
+
+# Theater_Screens_Screenings
+Question.create!(text: "What is the relationship between a theater and a screen?", schema_img_filename: "theaters-screens-screenings-schema.png", hint: "if it's not has_one, it might be has...", start_text: start_text_for("Theater")).answers << Answer.create!(text: start_text_for("Theater", "has_many :screens"))
+
+Question.create!(text: "What is the relationship between a theater and a screening?", schema_img_filename: "theaters-screens-screenings-schema.png", hint: "has_many: :through is a thing", start_text: start_text_for("Theater", "has_many :screens\n")).answers << Answer.create!(text: start_text_for("Theater", "has_many :screens\r\n  has_many :screenings, through: :screens"))
 
 Question.create!(text: "What is the relationship between a screen and a theater?", schema_img_filename: "theaters-screens-screenings-schema.png", hint: "It's belongs_to, ya rube").answers << Answer.create!(text: "belongs_to :theater")
 
