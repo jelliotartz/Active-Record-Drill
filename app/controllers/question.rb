@@ -3,7 +3,7 @@ use OmniAuth::Builder do
 end
 
 get '/auth/github_oauth/callback' do
-  return 'hello'
+  redirect '/questions/1'
 end
 
 get '/questions' do
