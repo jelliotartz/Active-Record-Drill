@@ -14,6 +14,8 @@ gem 'rake'
 
 gem 'shotgun'
 
+gem 'omniauth-github', '1.1.1'
+
 group :test do
   gem 'shoulda-matchers'
   gem 'rack-test'

@@ -1,4 +1,14 @@
+use OmniAuth::Builder do
+  provider :github, ENV["GITHUB_ID"], ENV["GITHUB_SECRET"], scope: "user,repo,gist"
+end
+
+get '/auth/github_oauth/callback' do
+  return 'hello'
+end
+
 get '/questions' do
+  p 'response'
+  p response
   @questions = Question.all
   if session[:guesses]
     correct = session[:guesses].select { |guess| guess[1] }
@@ -28,3 +38,4 @@ get '/clear_session' do
   session.clear
   redirect '/questions'
 end
+

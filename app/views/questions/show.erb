@@ -19,7 +19,13 @@
 <br>
 
 <form action="/questions/<%= @question.id %>/guess" method="post">
-  <textarea name="answer"><% if @last_guess %><%= @last_guess[2] %><% else %><%= @question.start_text %><% end %></textarea>
+  <textarea name="answer">
+    <% if @last_guess %>
+      <%= @last_guess[2] %>
+    <% else %>
+      <%= @question.start_text %>
+    <% end %>
+  </textarea>
   <input type="submit">
 </form>
 
