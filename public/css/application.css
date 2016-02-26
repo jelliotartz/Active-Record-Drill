@@ -3,6 +3,15 @@ nav .brand-logo {
   color: #444;
 }
 
+#macho {
+  font-size: 12em;
+  margin: 0em;
+  padding: 0em;
+  display: block;
+  display: inline-block;
+  white-space: nowrap;
+}
+
 .button-collapse {
   color: #444;
 }

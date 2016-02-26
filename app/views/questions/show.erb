@@ -2,6 +2,8 @@
 
 <% if @last_guess and @last_guess[1] == true %>
 <p>That's correct!</p>
+  <p id="macho">AWW YEUHHHHHHHH!!!</p>
+  <div id="ytplayer" frameborder="0"></div>
 <% elsif @last_guess %>
 <p>Incorrect!</p>
 <% end %>
@@ -35,4 +37,23 @@
   editor.getSession().on('change', function(){
     textarea.val(editor.getSession().getValue());
   });
+</script>
+
+<script>
+  // Load the IFrame Player API code asynchronously.
+  var tag = document.createElement('script');                         // New variable identified as script
+  tag.src = "https://www.youtube.com/player_api";                     // New variable given API (prewritten functions) to use
+  var firstScriptTag = document.getElementsByTagName('script')[0];    //
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  // Replace the 'ytplayer' element with an <iframe> and
+  // YouTube player after the API code downloads.
+  var player;
+  function onYouTubePlayerAPIReady() {
+    player = new YT.Player('ytplayer', {
+      height: '720',
+      width: '1280',
+      videoId: 'dw62C1MBKJc'
+    });
+  }
 </script>
