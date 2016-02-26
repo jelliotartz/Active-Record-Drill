@@ -14,6 +14,8 @@ gem 'rake'
 
 gem 'shotgun'
 
+gem 'pry'
+gem 'omniauth'
 gem 'omniauth-github', '1.1.1'
 
 group :test do
