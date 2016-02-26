@@ -35,3 +35,7 @@ p img {
   vertical-align: middle;
   height:20px;
 }
+
+.pos-ctr {
+  text-align: center;
+}

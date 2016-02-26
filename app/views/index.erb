@@ -1,5 +1,19 @@
 <p>You've completed <%= @completed ? @completed.length : 0 %> out of <%= @questions.length %> questions.</p>
-<div class="progress"><div class="determinate" <% if @completed %>style="width: <%= (@completed.length / (@questions.length.to_f)) * 100 %>%"<% end %>></div></div>
-<% @questions.each do |question| %>
-  <p><a href="/questions/<%= question.id %>"><%= question.text %></a> <% if @completed and @completed.include?(question.id) %><img src="/done.png"><% end %></p>
-<% end %>
+
+<div class="progress">
+	<div class="determinate"> 
+		<% if @completed %> style="width: <%= (@completed.length / (@questions.length.to_f)) * 100 %>%"
+		<% end %>>
+	</div>
+</div>
+
+<div class="pos-ctr">
+	<% @questions.each do |question| %>
+	  <p>
+		  <a href="/questions/<%= question.id %>"><%= question.text %></a>
+		  <% if @completed and @completed.include?(question.id) %>
+		  	<img src="/done.png">
+		  <% end %>
+	  </p>
+	<% end %>
+</div>

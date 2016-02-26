@@ -4,22 +4,66 @@
 # Question.create(text: "").answers << Answer.create(text: "")
 
 
-def start_text_for(class_name, associations = nil)
+def start_text_for_model(class_name, associations = nil)
   return "class #{class_name} < ActiveRecord::Base\r\n  #{associations}\r\nend"
 end
 
+def start_text_for_migration(class_name, associations = nil)
+  return "class Create#{class_name} < ActiveRecord::Migration\r\n  #{associations}\r\nend"
+end
+
+
 # Theater_Screens_Screenings
-Question.create!(text: "What is the relationship between a theater and a screen?", schema_img_filename: "theaters-screens-screenings-schema.png", hint: "if it's not has_one, it might be has...", start_text: start_text_for("Theater")).answers << Answer.create!(text: start_text_for("Theater", "has_many :screens"))
+Question.create!(text: "What is the relationship between a theater and a screen?", schema_img_filename: "theaters-screens-screenings-schema.png", hint: "if it's not has_one, it might be has...", start_text: start_text_for_model("Theater")).answers << Answer.create!(text: start_text_for_model("Theater", "has_many :screens"))
 
-Question.create!(text: "What is the relationship between a theater and a screening?", schema_img_filename: "theaters-screens-screenings-schema.png", hint: "has_many: :through is a thing", start_text: start_text_for("Theater", "has_many :screens\n")).answers << Answer.create!(text: start_text_for("Theater", "has_many :screens\r\n  has_many :screenings, through: :screens"))
 
-Question.create!(text: "What is the relationship between a screen and a theater?", schema_img_filename: "theaters-screens-screenings-schema.png", hint: "It's belongs_to, ya rube").answers << Answer.create!(text: "belongs_to :theater")
+Question.create!(text: "What is the relationship between a theater and a screening?",
+  schema_img_filename: "theaters-screens-screenings-schema.png", hint: "has_many: :through is a thing", start_text: start_text_for_model("Theater", "has_many :screens\n")).answers << Answer.create!(text: start_text_for_model("Theater", "has_many :screens\r\n  has_many :screenings, through: :screens"))
 
-Question.create!(text: "What is the relationship between a screen and a screening?", schema_img_filename: "theaters-screens-screenings-schema.png", hint: "if it's not has_one, it might be has_...").answers << Answer.create!(text: "has_many :screenings")
+Question.create!(text: "What is the relationship between a screen and a theater?", schema_img_filename: "theaters-screens-screenings-schema.png", hint: "It's belongs_to, ya rube", start_text: start_text_for_model("Theater", "has_many :screens\r\n  has_many :screenings, through: :screens")).answers << Answer.create!(text: start_text_for_model("Theater", "has_many :screens\r\n  has_many :screenings, through: :screens"))
 
-Question.create!(text: "What is the relationship between a screening and a screen?", schema_img_filename: "theaters-screens-screenings-schema.png", hint: "It's belongs_to, ya rube").answers << Answer.create!(text: "belongs_to :screen")
+Question.create!(text: "What is the relationship between a screen and a screening?", schema_img_filename: "theaters-screens-screenings-schema.png", hint: "if it's not has_one, it might be has_...", start_text: start_text_for_model("Screen")).answers << Answer.create!(text: start_text_for_model("Theater", "has_many :screenings"))
 
-Question.create!(text: "What is the relationship between a screening and a theater?", schema_img_filename: "theaters-screens-screenings-schema.png", hint: "It's belongs_to, ya rube").answers << Answer.create!(text: "belongs_to :theater, through: :screen")
+Question.create!(text: "What is the relationship between a screening and a screen?", schema_img_filename: "theaters-screens-screenings-schema.png", hint: "It's belongs_to, ya rube").answers << Answer.create!(text: start_text_for_model("Theater", "belongs_to :screen"))
+
+Question.create!(text: "What is the relationship between a screening and a theater?", schema_img_filename: "theaters-screens-screenings-schema.png", hint: "It's belongs_to, ya rube").answers << Answer.create!(text: start_text_for_model("Theater", "belongs_to :theater, through: :screen"))
+
+#Migration file questions:
+
+Question.create!(text: "Write the migration file for the theaters table.", schema_img_filename: "theaters-screens-screenings-schema.png", hint: "Good luck!! Hahahaha!!!", start_text: start_text_for_migration("Theaters")).answers << Answer.create!(text: start_text_for_migration("Theaters", "def change\r\n  create_table :theaters do |t|\r\n    t.string :name\r\n    t.timestamps(null: false)\r\n  end\r\nend"))
+
+Question.create!(text: "Write the migration file for the screens table.", schema_img_filename: "theaters-screens-screenings-schema.png", hint: "Good luck!! Hahahaha!!!", start_text: start_text_for_migration("Screens")).answers << Answer.create!(text: start_text_for_migration("Screens", "def change\r\n  create_table :screens do |t|\r\n    t.integer :theater_id\r\n    t.timestamps(null: false)\r\n  end\r\nend"))
+
+Question.create!(text: "Write the migration file for the screenings table.", schema_img_filename: "theaters-screens-screenings-schema.png", hint: "Good luck!! Hahahaha!!!", start_text: start_text_for_migration("Screenings")).answers << Answer.create!(text: start_text_for_migration("Screenings", "def change\r\n  create_table :screenings do |t|\r\n    t.string :movie_title\r\n    t.datetime :start_time\r\n    t.integer :screen_id\r\n    t.timestamps(null: false)\r\n  end\r\nend"))
+
+# class CreateTheaters < ActiveRecord::Migration
+#   def change
+#     create_table :theaters do |t|
+#       t.string :name
+#       t.timestamps(null: false)
+#     end
+#   end
+# end
+
+# class CreateScreens < ActiveRecord::Migration
+#   def change
+#     create_table :screens do |t|
+#       t.integer :theater_id
+#       t.timestamps(null: false)
+#     end
+#   end
+# end
+
+# class CreateScreenings < ActiveRecord::Migration
+#   def change
+#     create_table :screenings do |t|
+#       t.string :movie_title
+#       t.datetime :start_time
+#       t.integer :screen_id
+#       t.timestamps(null: false)
+#     end
+#   end
+# end
 
 
 ##### Questions and Answers for T-Shirt Challenge

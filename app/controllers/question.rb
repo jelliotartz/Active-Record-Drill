@@ -1,3 +1,18 @@
+require 'pry'
+
+use OmniAuth::Builder do
+  provider :github, ENV["GITHUB_ID"], ENV["GITHUB_SECRET"], scope: "user,repo,gist"
+end
+
+
+%w(get post).each do |method|
+  send(method, '/auth/github/callback') do
+    @user = User.find_or_create_with_omniauth!(env['omniauth.auth'])
+    session[:user_id] = @user.id
+    redirect '/questions'
+  end
+end
+
 get '/questions' do
   @questions = Question.all
   if session[:guesses]
@@ -28,3 +43,4 @@ get '/clear_session' do
   session.clear
   redirect '/questions'
 end
+
