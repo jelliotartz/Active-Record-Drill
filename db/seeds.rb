@@ -20,17 +20,22 @@ Question.create!(text: "What is the relationship between a theater and a screen?
 Question.create!(text: "What is the relationship between a theater and a screening?",
   schema_img_filename: "theaters-screens-screenings-schema.png", hint: "has_many: :through is a thing", start_text: start_text_for_model("Theater", "has_many :screens\n")).answers << Answer.create!(text: start_text_for_model("Theater", "has_many :screens\r\n  has_many :screenings, through: :screens"))
 
-Question.create!(text: "What is the relationship between a screen and a theater?", schema_img_filename: "theaters-screens-screenings-schema.png", hint: "It's belongs_to, ya rube", start_text: start_text_for_model("Theater", "has_many :screens\r\n  has_many :screenings, through: :screens")).answers << Answer.create!(text: start_text_for_model("Theater", "has_many :screens\r\n  has_many :screenings, through: :screens"))
+#Question 3:
+Question.create!(text: "What is the relationship between a screen and a theater?", schema_img_filename: "theaters-screens-screenings-schema.png", hint: "It's belongs_to, ya rube", start_text: start_text_for_model("Screen").answers << Answer.create!(text: start_text_for_model("Screen", "belongs_to :theater"))
 
-Question.create!(text: "What is the relationship between a screen and a screening?", schema_img_filename: "theaters-screens-screenings-schema.png", hint: "if it's not has_one, it might be has_...", start_text: start_text_for_model("Screen")).answers << Answer.create!(text: start_text_for_model("Theater", "has_many :screenings"))
+#Question 4:
+Question.create!(text: "What is the relationship between a screen and a screening?", schema_img_filename: "theaters-screens-screenings-schema.png", hint: "if it's not has_one, it might be has_...", start_text: start_text_for_model("Screen")).answers << Answer.create!(text: start_text_for_model("Screen", "has_many :screenings"))
 
-Question.create!(text: "What is the relationship between a screening and a screen?", schema_img_filename: "theaters-screens-screenings-schema.png", hint: "It's belongs_to, ya rube").answers << Answer.create!(text: start_text_for_model("Theater", "belongs_to :screen"))
+#Question 5:
+Question.create!(text: "What is the relationship between a screening and a screen?", schema_img_filename: "theaters-screens-screenings-schema.png", hint: "It's belongs_to, ya rube", start_text: start_text_for_model("Screening")).answers << Answer.create!(text: start_text_for_model("Screening", "belongs_to :screen"))
 
-Question.create!(text: "What is the relationship between a screening and a theater?", schema_img_filename: "theaters-screens-screenings-schema.png", hint: "It's belongs_to, ya rube").answers << Answer.create!(text: start_text_for_model("Theater", "belongs_to :theater, through: :screen"))
+#Question 6:
+Question.create!(text: "What is the relationship between a screening and a theater?", schema_img_filename: "theaters-screens-screenings-schema.png", hint: "It's belongs_to, ya rube", start_text: start_text_for_model("Screening")).answers << Answer.create!(text: start_text_for_model("Screening", "has_one :theater, through: :screen"))
 
 #Migration file questions:
 
-Question.create!(text: "Write the migration file for the theaters table.", schema_img_filename: "theaters-screens-screenings-schema.png", hint: "Good luck!! Hahahaha!!!", start_text: start_text_for_migration("Theaters")).answers << Answer.create!(text: start_text_for_migration("Theaters", "def change\r\n  create_table :theaters do |t|\r\n    t.string :name\r\n    t.timestamps(null: false)\r\n  end\r\nend"))
+#Question 7:
+Question.create!(text: "Write the migration file for the theaters table.", schema_img_filename: "theaters-screens-screenings-schema.png", hint: "Good luck!! Hahahaha!!!", start_text: start_text_for_migration("Theaters")).answers << Answer.create!(text: start_text_for_migration("Theaters", "def change\n  create_table :theaters do |t|\n    t.string :name\n    t.timestamps(null: false)\n  end\nend"))
 
 Question.create!(text: "Write the migration file for the screens table.", schema_img_filename: "theaters-screens-screenings-schema.png", hint: "Good luck!! Hahahaha!!!", start_text: start_text_for_migration("Screens")).answers << Answer.create!(text: start_text_for_migration("Screens", "def change\r\n  create_table :screens do |t|\r\n    t.integer :theater_id\r\n    t.timestamps(null: false)\r\n  end\r\nend"))
 
